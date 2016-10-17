@@ -1,0 +1,12 @@
+{
+  "host":"localhost\\",
+  "database":"db_name",
+  "user":"db_user",
+  "password":"db_pass",
+  "port":1433,
+  "requestTimeOut":4000,
+  "conectionTimeOut":4000,
+  "encrypt":true,
+  "user_service":"user_service",
+  "password_service":"pass_service"
+}
