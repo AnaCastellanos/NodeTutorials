@@ -9,24 +9,18 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.post('/getRandomComments', function(req, res) {
-  console.log(req.body.channelId)
+
     functions.getRandomVideos(req.body.channelId)
-        .then(responses => {
-            functions.readVideos(responses)
-                .then(resp =>
-                    functions.getlistRandomComment(resp)
-                    .then(respuesta => {
-                      res.status(200)
-                      res.send(JSON.parse(JSON.stringify(respuesta)))
-                    }))
+        .then(functions.readVideos)
+        .then(functions.getListRandomComment)
+        .then(respuesta => {
+            res.status(200)
+            res.send(JSON.stringify(respuesta))
         })
         .catch(error => {
-            console.log(error);
-            res.status(500)
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500)
+            console.log(error)
+            res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"})
+            res.send(JSON.stringify(error))
         })
 })
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
