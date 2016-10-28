@@ -10,9 +10,7 @@ getRandomVideos = (channelId) => {
             if (data.error)
                 return reject(data.error)
             return resolve(data)
-        }).on('error', function(err) {
-            reject(err)
-        })
+        }).on('error',reject)
     })
 }
 
@@ -42,9 +40,7 @@ getListRandomComment = (resp) => {
                     commentsAll.push(JSON.parse(JSON.stringify(entry.snippet.topLevelComment.snippet.textDisplay)))
                 })
                 return resolve(commentsAll)
-            }).on('error', function(err) {
-                reject(err)
-            })
+            }).on('error',reject)
         }
     })
 }
